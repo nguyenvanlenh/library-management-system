@@ -1,0 +1,20 @@
+server:
+  port: 8888
+spring:
+ application:
+  name: lib-manage
+ datasource:
+  url: jdbc:mysql://localhost/lib-management?createDatabaseIfNotExist=true
+  username: root
+  password: 
+  driver-class-name: com.mysql.cj.jdbc.Driver
+ jpa:
+   properties:
+    hibernate:
+    # The SQL dialect makes Hibernate generate better SQL for the chosen database
+     dialect: org.hibernate.dialect.MySQLDialect
+     format-sql: true
+   show-sql: true
+   hibernate:
+   # Hibernate ddl auto (none, create, create-drop, validate, update)
+     ddl-auto: update
