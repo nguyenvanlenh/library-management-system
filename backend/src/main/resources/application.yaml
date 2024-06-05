@@ -5,8 +5,8 @@ spring:
   name: lib-manage
  datasource:
   url: jdbc:mysql://localhost/lib-management?createDatabaseIfNotExist=true
-  username: root
-  password: 
+  username: ENC(/2DTGgJn0emccDLLK2KpfebnjLPqULku)
+  password: ENC(JJtjBGndGYWpIjSRM63DOfj9C3Mbbldr)
   driver-class-name: com.mysql.cj.jdbc.Driver
  jpa:
    properties:
@@ -18,3 +18,9 @@ spring:
    hibernate:
    # Hibernate ddl auto (none, create, create-drop, validate, update)
      ddl-auto: update
+jasypt:
+  encryptor:
+    password: watermelon
+    algorithm: PBEWithMD5AndDES
+jwt:
+  signerKey: xIozWdD9r3RiqzaaRxJTYMvVvoKVk4G9Iq4kZ7ZEXXpePPxgtRQKj/O43HYbWhKy
