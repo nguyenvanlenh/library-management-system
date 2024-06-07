@@ -48,14 +48,14 @@ public class AuthServiceImp implements AuthService {
 	public AuthResponse login(AuthRequest request) {
 		User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> {
 			log.error("User not found for username: {}", request.getUsername());
-			return new ResourceNotFoundException("user not found");
+			return new ResourceNotFoundException("user_not_found");
 		});
 
 		boolean authenticated = passwordEncoder.matches(request.getPassword(), user.getPassword());
 
 		if (!authenticated) {
 			log.warn("Authentication failed for username: {}", request.getUsername());
-			throw new BadCredentialsException("username or password is incorrect");
+			throw new BadCredentialsException("login_bad_credentials");
 		}
 
 		String token = jwtTokenUtils.generateToken(user);
@@ -67,14 +67,14 @@ public class AuthServiceImp implements AuthService {
 	public void register(AuthRequest request) {
 		if (userRepository.existsByUsername(request.getUsername())) {
 			log.warn("Registration failed: username already exists: {}", request.getUsername());
-			throw new ResourceNotFoundException("username already exists");
+			throw new ResourceNotFoundException("register_user_exists", request.getUsername());
 		}
 		if (userRepository.existsByEmail(request.getEmail())) {
 			log.warn("Registration failed: email already exists: {}", request.getEmail());
-			throw new ResourceNotFoundException("email already exists");
+			throw new ResourceNotFoundException("register_email_exists", request.getEmail());
 		}
 		Role role = roleRepository.findById(ERole.STUDENT)
-				.orElseThrow(() -> new ResourceNotFoundException("role not found"));
+				.orElseThrow(() -> new ResourceNotFoundException("role_not_found"));
 		User user = User.builder().username(request.getUsername()).email(request.getEmail())
 				.password(passwordEncoder.encode(request.getPassword()))
 				.listRoles(new HashSet<>(Collections.singleton(role))).build();
