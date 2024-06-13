@@ -5,9 +5,6 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-
 import com.watermelon.enums.ELanguage;
 
 import jakarta.persistence.Column;
@@ -35,8 +32,6 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@DynamicInsert
-@DynamicUpdate
 public class Book extends AbstractAuditEntity {
 
 	@Id

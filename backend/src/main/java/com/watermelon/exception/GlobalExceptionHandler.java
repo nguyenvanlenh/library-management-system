@@ -42,5 +42,15 @@ public class GlobalExceptionHandler {
 				.build();
 		return ResponseEntity.status(401).body(errorResponse);
 	}
+	@ExceptionHandler({
+		BookServiceBusinessException.class,
+	})
+	public ResponseEntity<ApiResponse<Void>> handlingServiceBusinessException(Exception e){
+		ApiResponse<Void> errorResponse = ApiResponse.<Void>builder()
+				.status(500)
+				.message(e.getMessage())
+				.build();
+		return ResponseEntity.status(500).body(errorResponse);
+	}
 	
 }
