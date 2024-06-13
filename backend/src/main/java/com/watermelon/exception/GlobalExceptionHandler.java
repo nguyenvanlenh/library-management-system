@@ -43,6 +43,7 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(401).body(errorResponse);
 	}
 	@ExceptionHandler({
+		BookTransactionServiceBusinessException.class,
 		BookServiceBusinessException.class,
 	})
 	public ResponseEntity<ApiResponse<Void>> handlingServiceBusinessException(Exception e){
