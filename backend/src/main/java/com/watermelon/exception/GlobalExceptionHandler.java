@@ -46,7 +46,6 @@ public class GlobalExceptionHandler {
 		BookTransactionServiceBusinessException.class,
 		BookServiceBusinessException.class,
 		BookRatingServiceBusinessException.class,
-		SearchServiceBusinessException.class
 	})
 	public ResponseEntity<ApiResponse<Void>> handlingServiceBusinessException(Exception e){
 		ApiResponse<Void> errorResponse = ApiResponse.<Void>builder()
