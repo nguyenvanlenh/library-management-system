@@ -8,7 +8,7 @@ public class BookMapper {
 	public static Book toEntity(BookRequest request) {
 		return Book.builder()
 				.title(request.getTitle())
-				.iSBN(request.getISBN())
+				.isbn(request.getIsbn())
 				.description(request.getDescription())
 				.language(request.getLanguage())
 				.quantityAvailable(request.getQuantityAvailable())

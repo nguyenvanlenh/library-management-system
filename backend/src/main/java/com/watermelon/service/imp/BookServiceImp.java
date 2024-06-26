@@ -92,7 +92,7 @@ public class BookServiceImp implements BookService {
 		Book bookUpdated = commonService.getBookById(bookId);
 		try {
 			bookUpdated.setTitle(request.getTitle());
-			bookUpdated.setISBN(request.getISBN());
+			bookUpdated.setIsbn(request.getIsbn());
 			bookUpdated.setDescription(request.getDescription());
 			bookUpdated.setLanguage(request.getLanguage());
 			bookUpdated.setQuantityAvailable(request.getQuantityAvailable());

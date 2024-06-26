@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookRequest {
 
-	private String iSBN;
+	private String isbn;
 
 	private String title;
 

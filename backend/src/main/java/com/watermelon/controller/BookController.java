@@ -8,6 +8,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.data.web.SortDefault.SortDefaults;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,6 +26,7 @@ import com.watermelon.dto.response.ApiResponse;
 import com.watermelon.dto.response.PageResponse;
 import com.watermelon.entity.Book;
 import com.watermelon.service.BookService;
+import com.watermelon.service.RedisService;
 
 import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
@@ -33,10 +35,15 @@ import lombok.RequiredArgsConstructor;
 public class BookController {
 
     private final BookService bookService;
+    private final RedisService redisService;
 
     @GetMapping("/{id}")
     public ApiResponse<Book> getBook(@PathVariable Long id) throws JsonProcessingException{
-    		Book data = bookService.getBookById(id);
+    		Book data = redisService.getBook(id);
+    		if(ObjectUtils.isEmpty(data)) {
+    			data = bookService.getBookById(id);
+    			redisService.addNewBook(data);
+    		}
 			return ApiResponse.<Book>builder()
         		.message("Data book")
         		.data(data)

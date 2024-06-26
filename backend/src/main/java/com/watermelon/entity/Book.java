@@ -6,9 +6,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.watermelon.enums.ELanguage;
+import com.watermelon.listener.BookListener;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +34,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(BookListener.class)
 public class Book extends AbstractAuditEntity {
 
 	@Id
@@ -39,7 +42,7 @@ public class Book extends AbstractAuditEntity {
 	private Long id;
 
 	@Column(length = 50,unique = true)
-	private String iSBN;
+	private String isbn;
 	
 	private String title;
 	

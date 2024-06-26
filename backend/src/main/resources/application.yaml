@@ -24,3 +24,7 @@ jasypt:
     algorithm: PBEWithMD5AndDES
 jwt:
   signerKey: xIozWdD9r3RiqzaaRxJTYMvVvoKVk4G9Iq4kZ7ZEXXpePPxgtRQKj/O43HYbWhKy
+redis:
+  server:
+    host: 127.0.0.1
+    port: 6379
