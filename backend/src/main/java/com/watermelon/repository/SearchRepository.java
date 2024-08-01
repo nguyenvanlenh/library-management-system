@@ -82,10 +82,10 @@ public class SearchRepository {
 				if (StringUtils.hasLength(language)) {
 					selectQuery.setParameter("language", ELanguage.valueOf(language.toUpperCase()));
 				}
+				selectQuery.setFirstResult(pageNo * pageSize);
+				selectQuery.setMaxResults(pageSize);
 				Long totalElements = (long) selectQuery.getResultList().size();
 
-				selectQuery.setFirstResult(pageNo);
-				selectQuery.setMaxResults(pageSize);
 
 				List<Book> bookList = selectQuery.getResultList();
 				int totalPage = 0;
